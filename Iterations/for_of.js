@@ -1,4 +1,4 @@
-// Syntax of for of loop
+// Syntax of for of loop -> We can only use "for of" on array and string.
 // for (const element of object) {
 // }
 
