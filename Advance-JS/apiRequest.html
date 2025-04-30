@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Profile Info</title>
+</head>
+<body style="background-color: #212121; color: white; font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <button id="loadData" style="padding: 10px 20px; font-size: 18px;">Load GitHub Info</button>
+
+    <table id="infoTable" border="1" style="margin: 30px auto; display: none; border-collapse: collapse; color: white;">
+        <thead>
+            <tr>
+                <th>Avatar</th>
+                <th>Followers</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="avatarCell"></td>
+                <td id="followersCell"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        const button = document.getElementById('loadData');
+        const avatarCell = document.getElementById('avatarCell');
+        const followersCell = document.getElementById('followersCell');
+        const infoTable = document.getElementById('infoTable');
+
+        button.addEventListener('click', function () {
+            const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', requestUrl);
+            
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(this.responseText);
+                    
+                    // Set avatar
+                    avatarCell.innerHTML = `<img src="${data.avatar_url}" width="100" style="border-radius: 10px;">`;
+
+                    // Set followers
+                    followersCell.textContent = data.followers;
+
+                    // Show table
+                    infoTable.style.display = 'table';
+                }
+            }
+
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
