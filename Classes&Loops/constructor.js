@@ -15,6 +15,8 @@ const user2 = new User("Raj", "raj@gmail.com");
 user1.greet();  // Output: Hello, I'm Hiren
 user2.greet();  // Output: Hello, I'm Raj
 
+
+// new
 function User(username, loginCount, isLoggedIn){
     this.username = username;
     this.loginCount = loginCount;
